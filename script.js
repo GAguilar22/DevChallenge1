@@ -168,10 +168,37 @@ function initializeContactForm() {
 }
 
 /* 
+   HAMBURGER MENU
+ */
+function initializeHamburger() {
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  const links = document.querySelectorAll('.nav-links li a');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  // Tancar menú al fer click (per a mobils)
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (hamburger && navLinks) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+  });
+}
+
+/* 
    INICIALITZACIÓ
  */
 document.addEventListener('DOMContentLoaded', () => {
   createNavigationDots();
   initializeFilters();
   initializeContactForm();
+  initializeHamburger();
 });
